@@ -38,10 +38,12 @@ fun compileWasm(
     friendDependencies: List<KotlinLibrary>,
     exportedDeclarations: Set<FqName> = emptySet()
 ): WasmCompilerResult {
+    val irFactory = IrFactoryImpl
+
     val (moduleFragment, dependencyModules, irBuiltIns, symbolTable, deserializer) =
         loadIr(
             project, mainModule, analyzer, configuration, allDependencies, friendDependencies,
-            IrFactoryImpl
+            irFactory
         )
 
     val allModules = when (mainModule) {
@@ -50,7 +52,7 @@ fun compileWasm(
     }
 
     val moduleDescriptor = moduleFragment.descriptor
-    val context = WasmBackendContext(moduleDescriptor, irBuiltIns, symbolTable, moduleFragment, exportedDeclarations, configuration)
+    val context = WasmBackendContext(moduleDescriptor, irBuiltIns, symbolTable, moduleFragment, exportedDeclarations, configuration, irFactory)
 
     // Load declarations referenced during `context` initialization
     allModules.forEach {

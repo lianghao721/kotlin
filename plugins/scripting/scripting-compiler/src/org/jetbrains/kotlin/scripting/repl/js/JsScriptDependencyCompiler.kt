@@ -16,6 +16,8 @@ import org.jetbrains.kotlin.ir.backend.js.JsIrBackendContext
 import org.jetbrains.kotlin.ir.backend.js.generateJsCode
 import org.jetbrains.kotlin.ir.backend.js.lower.serialization.ir.JsIrLinker
 import org.jetbrains.kotlin.ir.backend.js.utils.NameTables
+import org.jetbrains.kotlin.ir.declarations.impl.IrModuleFragmentImpl
+import org.jetbrains.kotlin.ir.declarations.persistent.PersistentIrFactory
 import org.jetbrains.kotlin.ir.descriptors.IrBuiltIns
 import org.jetbrains.kotlin.ir.descriptors.IrFunctionFactory
 import org.jetbrains.kotlin.ir.util.*
